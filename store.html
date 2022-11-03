@@ -14,12 +14,34 @@
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="store.html">STORE</a></li>
                     <li><a href="about.html">ABOUT</a></li>
+                    <button id="cart-button">Cart</button>
+                    <div class="popup-container" id="popup-container">
+                        <div class="popup">
+                            <button id="close">&times;</button>
+                            <section class="container content-section">
+                                <h2 class="section-header">CART</h2>
+                                <div class="cart-row">
+                                    <span class="cart-item cart-header cart-column">ITEM</span>
+                                    <span class="cart-price cart-header cart-column">PRICE</span>
+                                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                                </div>
+                                <div class="cart-items"></div>
+                                <div class="cart-total">
+                                    
+                                    <strong class="cart-total-title">Total</strong>
+                                    <span class="cart-total-price">$0</span>
+                                </div>
+                                <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+                            </section>
+                        </div>
+                       </div>
                 </ul>
+                
             </nav>
             <h1 class="band-name band-name-large">The Generics</h1>
         </header>
         <section class="container content-section">
-           
+            <div id="container"></div>
             <h2 class="section-header">MUSIC</h2>
             <div class="shop-items">
                 <div class="shop-item">
@@ -77,8 +99,8 @@
                 </div>
             </div>
         </section>
-        <div id="container"></div>
-        <button id="open">See this Cart</button>
+        
+        <button  id="open">See this Cart</button>
    <div class="popup-container" id="popup-container">
     <div class="popup">
         <button id="close">&times;</button>
@@ -99,6 +121,7 @@
         </section>
     </div>
    </div>
+   
         <footer class="main-footer">
             <div class="container main-footer-container">
                 <h3 class="band-name">The Generics</h3>
