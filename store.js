@@ -7,6 +7,7 @@ else{
   
 }
 
+
 function ready()
 {
  
@@ -183,9 +184,46 @@ function cartLoaded()
 cartLoaded();
 }
 
+page1=document.getElementById('page-1');
+page2=document.getElementById('page-2');
+page2.addEventListener('click',page2load);
+page1.addEventListener('click',page1load);
+
+
+function page2load()
+{
+  document.getElementsByClassName('shop-items')[0].innerHTML='';
+  document.getElementsByClassName('cart-items')[0].innerHTML='';
+
+  axios.get('http://localhost:3000/products/?page=2').then((products)=>{
+   
+  for(var i=0;i<products.data.length;i++)
+  {
+    showOnScreen(products.data[i])
+  }
+  ready();
+  
+  }).catch(err=>console.log(err));
+}
+
+function page1load()
+{
+  document.getElementsByClassName('shop-items')[0].innerHTML='';
+  document.getElementsByClassName('cart-items')[0].innerHTML='';
+  axios.get('http://localhost:3000/products/?page=1').then((products)=>{
+  for(var i=0;i<products.data.length;i++)
+  {
+    showOnScreen(products.data[i])
+  }
+  ready();
+  }).catch(err=>console.log(err));
+}
+
 function getProducts()
 {
-  axios.get('http://localhost:3000/products').then((products)=>{
+  document.getElementsByClassName('shop-items')[0].innerHTML='';
+
+  axios.get('http://localhost:3000/products/?page=1').then((products)=>{
     
   for(var i=0;i<products.data.length;i++)
   {

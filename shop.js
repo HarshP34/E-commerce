@@ -3,7 +3,8 @@ const Cart=require('../models/cart');
 
 
 exports.getProducts = (req, res, next) => {
-  Product.findAll().then(products=>{
+  const page=+req.query.page||1;
+  Product.findAll({offset:(page-1)*ITEMS_PER_PAGE,limit:ITEMS_PER_PAGE}).then(products=>{
    res.json(products);
    
     })
@@ -24,12 +25,27 @@ exports.getProduct=(req,res,next)=>{
   .catch(err=>console.log(err));
 }
 
+
+const ITEMS_PER_PAGE=2;
 exports.getIndex = (req, res, next) => {
-  Product.findAll().then(products=>{
-    res.render('shop/index', {
+  const page=+req.query.page;
+  let totalItems;
+  Product.findAll()
+  .then((numProducts)=>{
+    totalItems=numProducts.length;
+return   Product.findAll({offset:(page-1)*ITEMS_PER_PAGE,limit:ITEMS_PER_PAGE})
+  }).then(products=>{
+    res.render('shop/index',{
       prods: products,
       pageTitle: 'Shop',
-      path: '/'
+      path: '/',
+      totalProducts:totalItems,
+      hasNextPage:ITEMS_PER_PAGE*page<totalItems,
+      hasPreviousPage:page>1,
+      nextPage:page+1,
+      previousPage:page-1,
+      lastPage:Math.ceil(totalItems/ITEMS_PER_PAGE)
+    
     });
   })
   .catch(err=>console.log(err));
