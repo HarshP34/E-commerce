@@ -39,17 +39,20 @@ exports.getCart = (req, res, next) => {
   req.user.getCart()
   .then(cart=>{
     return cart.getProducts().then(products=>{
-      res.render('shop/cart', {
-        path: '/cart',
-        pageTitle: 'Your Cart',
-        products:products
-      });
+
+      res.json(products)
+      // res.render('shop/cart', {
+      //   path: '/cart',
+      //   pageTitle: 'Your Cart',
+      //   products:products
+      // });
     }).catch(err=>console.log(err))
   })
   .catch(err=>console.log(err))
 };
 
 exports.postCart=(req,res,next)=>{
+
   const prodId=req.body.productId;
   let fetchCart;
   let newQuantity=1;
@@ -78,9 +81,9 @@ return product;
   .addProduct(product,{through:{quantity:newQuantity}})
  
 }).then(()=>{
-  res.redirect('/cart')
+  res.status(200).json({success:true ,message:'Successfully Added'})
 })
-.catch(err=>console.log(err))
+.catch(()=>{res.status(500).json({success:false ,message:'Error Occured'})});
 }
 
 
