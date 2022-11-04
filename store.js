@@ -4,12 +4,12 @@ if(document.readyState=='loading')
 }
 else{
   ready();
+  
 }
-
 
 function ready()
 {
-  cartLoaded();
+ 
 const container=document.getElementById('container');
 const AddToCartButtons=document.getElementsByClassName(' shop-item-button');
 for(var i=0;i<AddToCartButtons.length;i++)
@@ -59,8 +59,6 @@ function removeCartItem(event)
   buttonclicked.parentElement.parentElement.remove();
   updateCartTotal();
 }
-
-
 
 function addToCartClicked(e)
 {
@@ -113,6 +111,7 @@ function updateCartTotal()
 
 function addItemToCart(title,price,imageSrc)
 {
+ 
   var cartRow=document.createElement('div');
   cartRow.classList.add('cart-row');
   var cartItems=document.getElementsByClassName('cart-items')[0];
@@ -138,7 +137,7 @@ function addItemToCart(title,price,imageSrc)
 
   cartRow.innerHTML=cartRowContent;
   cartItems.append(cartRow);
- 
+
 }
 
 function purchaseClicked()
@@ -177,14 +176,12 @@ function cartLoaded()
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click',removeCartItem);
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change',quantityChanged);
    }
- 
       console.log(res.data);
 })
 }
 
+cartLoaded();
 }
-
-
 
 function getProducts()
 {
@@ -195,7 +192,6 @@ function getProducts()
     showOnScreen(products.data[i])
   }
   ready();
-
   }).catch(err=>console.log(err));
 }
 
@@ -213,7 +209,6 @@ shopItem.innerHTML=` <span class="shop-item-title">${data.title}</span>
 
 }
 
-
 function addToCart(productId)
 {
   axios.post('http://localhost:3000/cart',{productId:productId})
@@ -228,7 +223,6 @@ function addToCart(productId)
   })
   .catch(err=>console.log(err));
 }
-
 
 function removecartItem(productId)
 {
