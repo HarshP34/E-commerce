@@ -17,19 +17,10 @@ const Product = require('./models/product');
 const User = require('./models/user');
 const Cart=require('./models/cart');
 const CartItem=require('./models/cart-item');
-<<<<<<< HEAD
-const Order=require('./models/order');
-const OrderDetail=require('./models/order-detail');
-const cors=require('cors');
-app.use(cors());
-
-app.use(bodyParser.json());
-=======
 const cors=require('cors');
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
->>>>>>> 4a4512472b2c6e4e109be7c0b8c2dec651a53f9c
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req,res,next)=>{
    User.findByPk(1)
@@ -52,25 +43,11 @@ User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product,{through:CartItem});
 Product.belongsToMany(Cart,{through:CartItem});
-<<<<<<< HEAD
-User.hasMany(Order);
-Order.belongsTo(User);
-Order.belongsToMany(Product,{through:OrderDetail});
-Product.belongsToMany(Order,{through:OrderDetail});
-
-
-
-sequelize
-//.sync({force:true})
-.sync()
-.then(result=>{
-=======
 
 
 
 
 sequelize.sync().then(result=>{
->>>>>>> 4a4512472b2c6e4e109be7c0b8c2dec651a53f9c
   return User.findByPk(1);
 })
 .then(user=>{
@@ -81,17 +58,12 @@ sequelize.sync().then(result=>{
    return user
 }).then(user=>{
    //console.log(user);
-<<<<<<< HEAD
-   app.listen(3000);
-
-=======
    user.createCart()
    .then(cart=>{
       app.listen(3000);
    })
 
   
->>>>>>> 4a4512472b2c6e4e109be7c0b8c2dec651a53f9c
 })
 .catch(err=>console.log(err));
 
