@@ -36,6 +36,9 @@ const quantityInputs=document.getElementsByClassName('cart-quantity-input');
 
  const openCartbtn=document.getElementById('open');
  openCartbtn.addEventListener('click',openCart);
+ const cartbtn=document.getElementById('cart-button');
+ cartbtn.addEventListener('click',openCart);
+ 
  const closeCartbtn=document.getElementById('close');
  closeCartbtn.addEventListener('click',closeCart);
 const popup=document.getElementById('popup-container')
